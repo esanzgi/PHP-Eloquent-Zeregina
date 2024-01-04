@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuariosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/usuarios', [UsuariosController::class, 'index'])->name('userIndex');
+Route::post('/usuarios/create', [UsuariosController::class, 'addUser'])->name('addUser');
+Route::get('/usuarios/{id}/edit', [UsuariosController::class, 'editView'])->name('editView');
+Route::put('/usuarios/{id}', [UsuariosController::class, 'eguneratu'])->name('editUser');
+Route::delete('/usuarios/{id}', [UsuariosController::class, 'ezabatu'])->name('deleteUser');
