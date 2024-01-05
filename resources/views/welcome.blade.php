@@ -17,10 +17,7 @@
     </head>
     <body class="antialiased">
 
-        <nav>
-            <ul>
-                <li><a href="/usuarios">Erabiltzaileak orrira joan</a></li>
-            </ul>
-        </nav>
+    @include('includes.header')
+
     </body>
 </html>

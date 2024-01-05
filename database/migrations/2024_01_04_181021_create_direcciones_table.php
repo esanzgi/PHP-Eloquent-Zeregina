@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('usuarios');
             $table->string('helbidea');
             $table->timestamps();
+
+            $table->unique('user_id');
         });
     }
 

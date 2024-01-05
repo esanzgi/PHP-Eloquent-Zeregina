@@ -1,3 +1,6 @@
+@include('includes.header')
+
+
 <div>
   <h1>Erabiltzailea Gehitu</h1>
 
