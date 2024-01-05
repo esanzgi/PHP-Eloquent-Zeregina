@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\DireccionesController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\TemasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,8 @@ Route::delete('/posts/{id}', [PostsController::class, 'ezabatu'])->name('deleteP
 Route::post('/posts/{userId}', [PostsController::class, 'createPost'])->name('createPost');
 Route::put('/posts/{id}', [PostsController::class, 'updatePost'])->name('updatePost');
 Route::get('/posts/{id}', [PostsController::class, 'updatePostView'])->name('updatePostView');
+
+// Temas
+Route::get('/temas', [TemasController::class, 'index'])->name('temaIndex');
+Route::post('/temas/create', [TemasController::class, 'createTema'])->name('createTema');
+Route::delete('/temas/{id}', [TemasController::class, 'ezabatu'])->name('ezabatu');

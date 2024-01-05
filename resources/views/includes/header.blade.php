@@ -3,6 +3,7 @@
         <li><a href="{{ route('userIndex') }}" style="color: white;">Erabiltzaileak</a></li>
         <li><a href="{{ route('addressIndex') }}" style="color: white;">Helbideak</a></li>
         <li><a href="{{ route('postIndex') }}" style="color: white;">Posts</a></li>
+        <li><a href="{{ route('temaIndex') }}" style="color: white;">Temas</a></li>
     </ul>
 </nav>
 

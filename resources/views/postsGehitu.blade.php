@@ -20,8 +20,13 @@
                   <form action="{{ route('deletePost', ['id' => $post->id]) }}" method="post" style="display: inline;">
                       @csrf
                       @method('delete')
-                      <button type="submit">Delete</button>
+                      <button type="submit">Ezabatu</button>
                   </form>
+                    @forelse($post->temas as $tema)
+                        <button style="color: green;" disabled>{{ $tema->tema_izena }}</button>
+                    @empty
+                        <em  style="color: red;">Temarik gabe</em>
+                    @endforelse
               </li>
           @empty
               <li style="color: red;">Ez ditu post-ak oraindik</li>

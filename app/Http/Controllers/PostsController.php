@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuarios;
 use App\Models\Posts;
+use App\Models\Temas;
 
 class PostsController extends Controller
 {
@@ -17,8 +18,9 @@ class PostsController extends Controller
     public function createPostView($userId)
     {
         $user = Usuarios::find($userId);
+        $temas = Temas::all();
 
-        return view('createPostView', ['user'=>$user]);
+        return view('createPostView', compact('user', 'temas'));
     }
 
     public function createPost(Request $request ,$userId)
@@ -26,10 +28,13 @@ class PostsController extends Controller
         $user = Usuarios::find($userId);
 
         if($user) {
-            $user->posts()->create([
+            $post = $user->posts()->create([
                 'edukia'=>$request->edukia
             ]);
+
+            $post->temas()->attach($request->input('tema', []));
         }
+
 
         return redirect()->route('postIndex');
     }
@@ -37,20 +42,32 @@ class PostsController extends Controller
     public function updatePostView($id)
     {
         $post = Posts::find($id);
-        return view('updatePostView', ['post'=>$post]);
+        $temas = Temas::all();
+        return view('updatePostView', compact('post', 'temas'));
     }
 
     public function updatePost(Request $request, $id)
     {
-        Posts::find($id)->update([
-            'edukia'=>$request->edukia
-        ]);
+        $post = Posts::find($id);
+        
+        if($post) {
+            $post->update([
+                'edukia'=>$request->edukia
+            ]);
+            $post->temas()->detach();
+            $post->temas()->attach($request->input('tema', []));
+        }
+        
         return redirect()->route('postIndex');
     }
 
     public function ezabatu($id)
     {
-        Posts::find($id)->delete();
+        $post = Posts::find($id);
+
+        $post->temas()->detach();
+
+        $post->delete();
 
         return redirect()->route('postIndex');
     }
