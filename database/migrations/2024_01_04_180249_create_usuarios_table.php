@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('izena');
+            $table->integer('adina');
+            $table->string('email')->unique();
+            $table->date('jaiotze_data');
+            $table->enum('generoa', ['maskulinoa', 'femeninoa']);
             $table->timestamps();
         });
     }

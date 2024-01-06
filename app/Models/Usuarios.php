@@ -9,7 +9,13 @@ class Usuarios extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['izena'];
+    protected $fillable = [
+        'izena',
+        'adina',
+        'email',
+        'jaiotze_data',
+        'generoa'
+    ];
 
     public function direcciones()
     {
